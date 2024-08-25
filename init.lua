@@ -300,6 +300,10 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+  dev = {
+    path = '~/Developer/neovim/',
+    -- patterns = { "lazyflex" },
+  },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
@@ -317,3 +321,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
   group = format_sync_grp,
 })
+
+vim.lsp.set_log_level 'debug'
+if vim.fn.has 'nvim-0.5.1' == 1 then
+  require('vim.lsp.log').set_format_func(vim.inspect)
+  print(require('vim.lsp.log').get_filename())
+end

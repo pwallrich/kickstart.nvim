@@ -32,8 +32,7 @@ return {
     -- LLDB Xcode Debugging
     local xcodebuild = require 'xcodebuild.integrations.dap'
 
-    local codelldbpath = os.getenv 'HOME' .. '/tools/codelldb/extension/adapter/codelldb'
-
+    local codelldbpath = '/opt/homebrew/opt/llvm/bin/lldb-dap'
     xcodebuild.setup(codelldbpath)
 
     vim.keymap.set('n', '<leader>dd', xcodebuild.build_and_debug, { desc = 'Build & Debug' })

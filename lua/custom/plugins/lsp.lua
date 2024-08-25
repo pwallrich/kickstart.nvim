@@ -144,7 +144,7 @@ return { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- tsserver = {},
+      tsserver = {},
       --
       lua_ls = {
         -- cmd = {...},
@@ -195,6 +195,14 @@ return { -- LSP Configuration & Plugins
     -- SETUP SWIFT
     local lspconfig = require 'lspconfig'
     lspconfig.sourcekit.setup {
+      cmd = {
+        -- 'xcrun',
+        'sourcekit-lsp', -- maybe just "xcrun sourcekit-lsp" would be enough?
+        -- '/Applications/Xcode-15.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
+        -- '/Users/philippwallrich/Library/Developer/Toolchains/swift-5.10.1-RELEASE.xctoolchain/usr/bin/sourcekit-lsp',
+        '--log-level',
+        'debug',
+      },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
