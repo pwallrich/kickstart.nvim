@@ -44,6 +44,15 @@ return { -- LSP Configuration & Plugins
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
     --    function will be executed to configure the current buffer
+
+    -- elixir
+    require('lspconfig').elixirls.setup {
+      -- Unix
+      cmd = { '/opt/homebrew/Cellar/elixir-ls/0.24.1/libexec/language_server.sh' },
+    }
+
+    -- ocaml
+    require('lspconfig').ocamllsp.setup {}
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
@@ -207,20 +216,26 @@ return { -- LSP Configuration & Plugins
     -- SETUP SWIFT
     local lspconfig = require 'lspconfig'
     lspconfig.sourcekit.setup {
-      cmd = {
-        -- 'xcrun',
-        'sourcekit-lsp', -- maybe just "xcrun sourcekit-lsp" would be enough?
-        -- '/Applications/Xcode-15.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
-        -- '/Users/philippwallrich/Library/Developer/Toolchains/swift-5.10.1-RELEASE.xctoolchain/usr/bin/sourcekit-lsp',
-        '--log-level',
-        'debug',
-      },
+      -- cmd = {
+      --   -- 'xcrun',
+      --   'sourcekit-lsp', -- maybe just "xcrun sourcekit-lsp" would be enough?
+      --   -- '/Applications/Xcode-15.3.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
+      --   -- '/Users/philippwallrich/Library/Developer/Toolchains/swift-5.10.1-RELEASE.xctoolchain/usr/bin/sourcekit-lsp',
+      --   '--log-level',
+      --   'debug',
+      -- },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
             dynamicRegistration = true,
           },
         },
+      },
+    }
+
+    vim.filetype.add {
+      extension = {
+        templ = 'templ',
       },
     }
   end,
