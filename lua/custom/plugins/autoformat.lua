@@ -15,7 +15,7 @@ return { -- Autoformat
     log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       lua = { 'stylua' },
-      swift = { 'swiftlint' },
+      swift = { 'swiftformat' },
       ocaml = { 'ocamlformat' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
